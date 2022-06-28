@@ -1,11 +1,22 @@
+Narrative:
+This story is designed to validate REST web-service with 'vividus-plugin-rest-api'
+Here you can find an example of table transformers usage:
+First transformer uploads data from CSV file
+Second merge CSV data with data from scenario example table (rows 30, 31)
+Third transformer sort values by the registration date
+
+At line 30 you can find an example of validation of response value by RegEx pattern.
+
+Another interesting feature is generation of current date by #{generateDate(P)} expression (line 29).
+This functionality provided by 'vividus-plugin-datetime'
+
 Meta:
     @api
-    @regression
+    @feature 9
 
 Scenario: Upload Palette sorted by registration year
 Meta:
-    @testCaseId VLECT=8
-
+    @testCaseId 8
 Given request body:
 {
     "name" : "<name>",

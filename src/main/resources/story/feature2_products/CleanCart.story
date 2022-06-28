@@ -1,18 +1,16 @@
-Narrative: 
-This story designed to show known-issues mechanism
-Know-issue described as VVD-1 in known-issues.json file
+Narrative:
+This story is designed to show known-issues mechanism
+Known-issue described as VVD-1 in known-issues.json file
 You can additionally play with `failScenarioFast` and `failStoryFast` parameters to see how they affect story execution
 
 Meta:
-    @layout desktop
     @regression
-    
+
 GivenStories: story/precondition/LoginInApp.story
 
 Scenario: With known issue - Put 2 products in the cart and clean it
 Meta:
-    @testCaseId VLECT=23
-
+    @testCaseId 23
 Then number of elements found by `buttonName(Remove)` is = `0`
 When I click on element located `buttonName(add-to-cart-sauce-labs-backpack)`
 When I click on element located `buttonName(add-to-cart-sauce-labs-fleece-jacket)`
@@ -25,8 +23,7 @@ Then number of elements found by `className(shopping_cart_badge)` is = `0`
 
 Scenario: Put products in the cart and remove from it
 Meta:
-    @testCaseId VLECT=24
-
+    @testCaseId 24
 When I click on element located `buttonName(add-to-cart-sauce-labs-onesie)`
 Then number of elements found by `className(shopping_cart_badge)` is = `1`
 When I click on element located `buttonName(remove-sauce-labs-onesie)`

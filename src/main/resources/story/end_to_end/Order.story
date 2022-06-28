@@ -1,6 +1,5 @@
 Meta:
-    @layout desktop
-    @testCaseId VLECT=13
+    @testCaseId 13
     @e2e
 
 GivenStories: story/precondition/LoginInApp.story
@@ -24,11 +23,9 @@ Scenario: Validate checkout info
 When I click on element located `buttonName(Checkout)`
 When I wait until element located `id(checkout_info_container)` appears
 Then number of elements found by `caseInsensitiveText(checkout: your information)` is = `1`
-When I change context to element located `className(checkout_info)`
 When I enter `#{generate(Name.firstName)}` in field located `id(first-name)`
 When I enter `#{generate(Name.lastName)}` in field located `id(last-name)`
 When I enter `#{generate(Address.zipCode)}` in field located `id(postal-code)`
-When I reset context
 
 Scenario: Validate checkout price
 When I click on element located `buttonName(Continue)`
@@ -36,7 +33,6 @@ Then number of elements found by `caseInsensitiveText(Checkout: Overview)` is = 
 Then number of elements found by `className(cart_item)` is = `1`
 When I change context to element located `className(summary_subtotal_label)`
 When I save text of context element to SCENARIO variable `${productsPriceText}`
-!-- to examples table
 When I initialize the SCENARIO variable `productsPrice` with value `#{replaceFirstByRegExp(Item total:\s\$(\d+.?\d*), $1, ${productsPriceText})}`
 When I change context to element located `className(summary_tax_label)`
 When I save text of context element to SCENARIO variable `${taxText}`
@@ -55,7 +51,3 @@ Scenario: Validate Back Home button
 When I click on element located `buttonName(Back Home)`
 When I wait until element located `className(shopping_cart_container)` appears
 Then number of elements found by `className(shopping_cart_badge)` is = `0`
-
-!-- Stored for next Vividus presentations
-!-- When I initialize the SCENARIO variable `taxes` with value `#{evalGroovy(return ((${productsPrice} as double) * (${taxRate} as double)).round(2))}`
-!-- When I initialize the SCENARIO variable `totalPrice` with value `#{evalGroovy(return (${productsPrice} as double) + (${taxes} as double))}`
